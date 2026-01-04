@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:video_player/video_player.dart';
@@ -20,7 +21,7 @@ class VideoController extends GetxController {
   Future<void> fetchVideoDetails() async {
     try {
       isLoading(true);
-      var request = http.Request('POST', Uri.parse('https://trogon.info/task/api/video_details.php'));
+      var request = http.Request('POST', Uri.parse('${dotenv.env["basepath"]!}video_details.php'));
 
       http.StreamedResponse response = await request.send();
 

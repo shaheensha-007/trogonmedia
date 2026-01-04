@@ -1,3 +1,4 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -22,7 +23,7 @@ class HomeController extends GetxController {
   Future<void> fetchHomeData() async {
     try {
       isLoading(true);
-      var response = await http.post(Uri.parse('https://trogon.info/task/api/home.php'));
+      var response = await http.post(Uri.parse('${dotenv.env["basepath"]!}home.php'));
 
       if (response.statusCode == 200) {
         var result = jsonDecode(response.body);

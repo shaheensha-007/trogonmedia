@@ -1,3 +1,4 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -18,7 +19,7 @@ class StreakController extends GetxController {
   Future<void> fetchStreakData() async {
     try {
       isLoading(true);
-      var request = http.Request('POST', Uri.parse('https://trogon.info/task/api/streak.php'));
+      var request = http.Request('POST', Uri.parse('${dotenv.env["basepath"]!}streak.php'));
       http.StreamedResponse response = await request.send();
 
       if (response.statusCode == 200) {
